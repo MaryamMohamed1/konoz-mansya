@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Hidden Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="collection-header">
+        <a href="index.html" class="logo">← RETURN TO GATE</a>
+        <div class="filters-container">
+            <div class="era-filters" id="eraFilters">
+                <button class="era-btn active" data-era="all">ALL</button>
+                <button class="era-btn" data-era="pharaonic">PHARAONIC</button>
+                <button class="era-btn" data-era="greek">GREEK</button>
+                <button class="era-btn" data-era="roman">ROMAN</button>
+                <button class="era-btn" data-era="coptic">JEWISH & COPTIC</button>
+                <button class="era-btn" data-era="islamic">ISLAMIC</button>
+                <button class="era-btn" data-era="modern">MODERN</button>
+            </div>
+            
+            <div class="gov-filter">
+                <select id="govSelect">
+                <option value="all">All Governorates</option>
+                <option value="cairo">Cairo</option>
+                <option value="alexandria">Alexandria</option>
+                <option value="port-said">Port Said</option>
+                <option value="suez">Suez</option>
+                <option value="damietta">Damietta</option>
+                <option value="dakahlia">Dakahlia</option>
+                <option value="sharqia">Sharqia</option>
+                <option value="qalyubia">Qalyubia</option>
+                <option value="kafr-elsheikh">Kafr El Sheikh</option>
+                <option value="gharbia">Gharbia</option>
+                <option value="monufia">Monufia</option>
+                <option value="beheira">Beheira</option>
+                <option value="ismailia">Ismailia</option>
+                <option value="giza">Giza</option>
+                <option value="beni-suef">Beni Suef</option>
+                <option value="fayoum">Fayoum</option>
+                <option value="minya">Minya</option>
+                <option value="assiut">Assiut</option>
+                <option value="sohag">Sohag</option>
+                <option value="qena">Qena</option>
+                <option value="aswan">Aswan</option>
+                <option value="luxor">Luxor</option>
+                <option value="red-sea">Red Sea</option>
+                <option value="new-valley">New Valley</option>
+                <option value="matrouh">Matrouh</option>
+                <option value="north-sinai">North Sinai</option>
+                <option value="south-sinai">South Sinai</option>
+            </select>
+            </div>
+        </div>
+    </header>
+
+    <div class="collection-grid" id="collectionGrid"></div>
+
+    <div class="modal" id="detailModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            
+           
+            <div class="modal-media">
+                <div class="main-display" id="mainDisplay">
+                    <img id="mainImage" src="" alt="Artifact" style="display: none;">
+                    <model-viewer id="main3D" src="" auto-rotate camera-controls shadow-intensity="1" style="display: none;"></model-viewer>
+                    <div class="media-hint" id="mediaHint" style="display: none;">Drag to rotate • Scroll to zoom</div>
+                </div>
+                
+                <div class="thumbnails-container" id="thumbnailsContainer">
+                   
+                </div>
+            </div>
+
+            <!-- قسم النصوص -->
+            <div class="modal-details">
+                <h2 class="modal-title" id="modalTitle">Title</h2>
+                <div class="modal-meta" id="modalMeta">Era • Gov</div>
+                <p class="modal-teaser" id="modalTeaser">Teaser text goes here...</p>
+                <a href="#" class="visit-btn">PLAN YOUR VISIT</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const artifacts = [
+    { 
+        id: 1, title: "Temple of Hibis", era: "pharaonic", gov: "new-valley", 
+        coverImg: "asset/artifact/hibis.png", 
+        teaser: "A Persian-era masterpiece hidden deep within the Kharga Oasis. It remains one of the best-preserved temples of its kind, containing secrets of a forgotten dynasty.", 
+        gallery: [ { type: "3d", src: "asset/models/hibis.glb", thumb: "" }, { type: "image", src: "asset/artifact/hibis-tomp.png" }, { type: "image", src: "asset/artifact/hibis_thumb.png" }  ]
+    },
+    { 
+        id: 2, title: "Gebel el-Silsila", era: "pharaonic", gov: "aswan", 
+        coverImg: "asset/artifact/Gebel el-Silsila.png", 
+        teaser: "Not just a quarry, but a sacred site where the Nile is at its narrowest. Discover rock-cut shrines and the spectacular Speos of Horemheb.", 
+        gallery: [ { type: "image", src: "asset/artifact/silsila.png" }, { type: "image", src: "asset/artifact/silsila_2.png" } ]
+    },
+    { 
+        id: 3, title: "Beni Hasan Tombs", era: "pharaonic", gov: "minya", 
+        coverImg: "asset/artifact/benihasan.png", 
+        teaser: "Carved into the limestone cliffs, these Middle Kingdom tombs feature vibrant, daily-life scenes including ancient martial arts and sports.", 
+        gallery: [ { type: "image", src: "asset/artifact/benihasan1.png" } ,{ type: "image", src: "asset/artifact/benihasan2.png" } ]
+    },
+    { 
+        id: 4, title: "Medinet Madi", era: "pharaonic", gov: "fayoum", 
+        coverImg: "asset/artifact/medinet.png", 
+        teaser: "A remote Middle Kingdom temple dedicated to the cobra goddess Renenutet and the crocodile god Sobek. Walk through its ancient sphinx-lined avenue.", 
+        gallery: [ { type: "3d", src: "asset/models/medinet.glb", thumb: "asset/medinet_thumb.jpg" }, { type: "image", src: "asset/artifact/medinet1.png" } , { type: "image", src: "asset/artifact/medinet2.png" }]
+    },
+    { 
+        id: 5, title: "Serabit el-Khadim", era: "pharaonic", gov: "south-sinai", 
+        coverImg: "asset/artifact/Serabit el-Khadim.png", 
+        teaser: "High in the mountains of Sinai lies the Temple of Hathor, Mistress of Turquoise. Here, the world's very first alphabet was carved into stone.", 
+        gallery: [ { type: "3d", src: "asset/models/medinet.glb", thumb: "asset/medinet_thumb.jpg" },{ type: "image", src: "asset/artifact/serabit.png" }, { type: "image", src: "asset/artifact/serabit2.png" }]
+    },
+    { 
+        id: 6, title: "Tuna el-Gebel", era: "greek", gov: "minya", 
+        coverImg: "asset/artifact/Tuna el-Gebel.png", 
+        teaser: "A vast underground catacomb city dedicated to Thoth. Millions of mummified ibises and baboons rest here in total darkness.", 
+        gallery: [ { type: "3d", src: "asset/models/tuna.glb", thumb: "asset/tuna_thumb.jpg" }, { type: "image", src: "asset/artifact/tuna.png" } , { type: "image", src: "asset/artifact/tuna2.png" } ]
+    },
+    { 
+        id: 7, title: "Qasr Qarun", era: "greek", gov: "fayoum", 
+        coverImg: "asset/artifact/qarun.png", 
+        teaser: "A mysterious Ptolemaic temple. Once a year, the sun perfectly aligns to illuminate the sanctuary of the crocodile god, Sobek.", 
+        gallery: [ { type: "image", src: "asset/artifact/qarun1.png" }, { type: "image", src: "asset/artifact/qarun_inside.png" } ]
+    },
+    { 
+        id: 8, title: "Taposiris Magna", era: "greek", gov: "alexandria", 
+        coverImg: "asset/artifact/Taposiris Magna.png", 
+        teaser: "An ancient city and temple dedicated to Osiris. Recent excavations suggest it might hold the long-lost tomb of Cleopatra and Mark Antony.", 
+        gallery: [ { type: "image", src: "asset/artifact/taposiris.png" } ,{ type: "image", src: "asset/artifact/taposiris2.png" } ]
+    },
+    { 
+        id: 9, title: "Temple of Dush", era: "roman", gov: "new-valley", 
+        coverImg: "asset/artifact/Temple of Dush.png", 
+        teaser: "An ancient Roman fortress guarding the desert trade routes. A magnificent golden treasure was discovered hidden within its mud-brick walls.", 
+        gallery: [ { type: "image", src: "asset/artifact/dush.png" } ]
+    },
+    { 
+        id: 10, title: "Temple of Kalabsha", era: "roman", gov: "aswan", 
+        coverImg: "asset/artifact/Temple of Kalabsha.png", 
+        teaser: "Often called the 'Karnak of Nubia'. This massive Roman-era temple was completely dismantled and moved to save it from the rising waters of Lake Nasser.", 
+        gallery: [ { type: "3d", src: "asset/models/kalabsha.glb", thumb: "asset/kalabsha_thumb.jpg" }, { type: "image", src: "asset/artifact/kalabsha.png" } ]
+    },
+    { 
+        id: 11, title: "Karanis Ruins", era: "roman", gov: "fayoum", 
+        coverImg: "asset/artifact/Karanis Ruins.png", 
+        teaser: "A sprawling Greco-Roman ghost town in the Fayoum depression. Walk through the perfectly preserved streets, houses, and ancient granaries.", 
+        gallery: [ { type: "image", src: "asset/artifact/karanis.png" } ]
+    },
+    { 
+        id: 12, title: "White Monastery", era: "coptic", gov: "sohag", 
+        coverImg: "asset/artifact/White Monastery.png", 
+        teaser: "Built from the stolen stones of pharaonic temples, this fortress-like monastery holds ancient manuscripts and a history of resistance.", 
+        gallery: [ { type: "3d", src: "asset/models/white_monastery.glb", thumb: "asset/whitemonastery_thumb.jpg" }, { type: "image", src: "asset/artifact/whitemonastery.png" } ]
+    },
+    { 
+        id: 13, title: "St. Simeon Monastery", era: "coptic", gov: "aswan", 
+        coverImg: "asset/artifact/St. Simeon Monastery.png", 
+        teaser: "A 7th-century fortified monastery abandoned in the desert sands. Its ruined basilicas and monks' cells offer a hauntingly beautiful experience.", 
+        gallery: [ { type: "image", src: "asset/artifact/simeon.png" } ]
+    },
+    { 
+        id: 14, title: "Maimonides Synagogue", era: "coptic", gov: "cairo", 
+        coverImg: "asset/artifact/maimonides.png", 
+        teaser: "Hidden in the Jewish Quarter of Cairo, this historic 19th-century synagogue is built over the original burial site of the great philosopher Maimonides.", 
+        gallery: [ { type: "image", src: "asset/artifact/maimonides2.png" } ]
+    },
+    { 
+        id: 15, title: "Mosque of Al-Maridani", era: "islamic", gov: "cairo", 
+        coverImg: "asset/artifact/Mosque of Al-Maridani.png", 
+        teaser: "Hidden in the alleys of Darb al-Ahmar, this mosque blends Pharaonic pillars, Roman columns, and Islamic arches. A true architectural puzzle.", 
+        gallery: [ { type: "image", src: "asset/artifact/maridani.png" }, { type: "image", src: "asset/artifact/maridani_inside.png" } ]
+    },
+    { 
+        id: 16, title: "Shali Fortress", era: "islamic", gov: "matrouh", 
+        coverImg: "asset/artifact/shali.png", 
+        teaser: "A labyrinthine city built entirely of 'Kershef' (salt and mud) in Siwa Oasis. Exploring its ruins feels like walking on another planet.", 
+        gallery: [ { type: "3d", src: "asset/models/shali.glb", thumb: "asset/shali_thumb.jpg" }, { type: "image", src: "asset/artifact/shali2.png" } ]
+    },
+    { 
+        id: 17, title: "Al-Qasr Islamic Village", era: "islamic", gov: "new-valley", 
+        coverImg: "asset/artifact/alqasr.png", 
+        teaser: "An Ayyubid-era settlement in Dakhla Oasis. Its twisting, covered alleyways and wooden lintels have survived perfectly intact for nearly a millennium.", 
+        gallery: [ { type: "image", src: "asset/artifact/alqasr2.png" } ]
+    },
+    { 
+        id: 18, title: "The Nilometer", era: "islamic", gov: "cairo", 
+        coverImg: "asset/artifact/nilometer.png", 
+        teaser: "An ancient Abbasid structure built to measure the Nile's water levels, determining the fate of Egypt’s harvest and taxes. A marvel of early engineering.", 
+        gallery: [ { type: "image", src: "asset/artifact/nilometer1.png" } ]
+    },
+    { 
+        id: 20, title: "Wekalet El Ghouri", era: "islamic", gov: "cairo", 
+        coverImg: "asset/artifact/Wekalet El Ghouri.png", 
+        teaser: "A stunning 16th-century Mamluk caravanserai (hotel for merchants). Today, its vibrant courtyard hosts traditional Tanoura dance performances.", 
+        gallery: [ { type: "image", src: "asset/artifact/ghouri.png" } ]
+    },
+    { id: 21, title: "Tarabay al-Sharifi Complex", era: "islamic", gov: "cairo", coverImg: "asset/artifact/tarabay.png", teaser: "A hidden Mamluk architectural marvel in Bab al-Wazir. Its massive dome covers a tomb built for a powerful grand emir, surrounded by legends of hidden treasures.", gallery: [{ type: "image", src: "asset/artifact/tarabay2.png" }] },
+    
+    { id: 22, title: "Shatby Necropolis", era: "greek", gov: "alexandria", coverImg: "asset/artifact/Shatby Necropolis.png", teaser: "The oldest known Greek cemetery in Alexandria. Submerged partly by groundwater, its rock-cut tombs mimic the architecture of ancient Macedonian houses.", gallery: [{ type: "3d", src: "asset/models/shatby.glb", thumb: "asset/shatby_thumb.jpg" }, { type: "image", src: "asset/artifact/shatby.png" }] },
+    
+    { id: 24, title: "Ruins of Clysma", era: "roman", gov: "suez", coverImg: "asset/artifact/clysma.png", teaser: "The ancient Roman port of Clysma at the edge of the Red Sea. It was the starting point for Emperor Trajan’s canal linking the Nile to the sea.", gallery: [{ type: "image", src: "asset/artifact/clysma2.png" }] },
+    { id: 25, title: "Amr Ibn Al-Aas Mosque (Damietta)", era: "islamic", gov: "damietta", coverImg: "asset/artifact/Amr Ibn Al-Aas Mosque (Damietta).png", teaser: "Not the one in Cairo! This is the second oldest mosque in Egypt. It was converted to a church by Crusaders and back to a mosque multiple times in history.", gallery: [{ type: "3d", src: "asset/models/amr_damietta.glb", thumb: "asset/amr_damietta_thumb.jpg" }, { type: "image", src: "asset/artifact/amr_damietta.png" }] },
+    
+    { id: 26, title: "Tell El-Ruba (Mendes)", era: "pharaonic", gov: "dakahlia", coverImg: "asset/artifact/mendes.png", teaser: "The forgotten capital of the 29th Dynasty. Here lies a massive solitary monolithic granite shrine dedicated to the sacred Ram God Banebdjedet.", gallery: [{ type: "image", src: "asset/artifact/mendes2.png" }] },
+        
+    { id: 28, title: "Athribis Baths", era: "roman", gov: "qalyubia", coverImg: "asset/artifact/Athribis Baths.png", teaser: "Hidden beneath the modern city of Benha lies the remains of Athribis, featuring well-preserved Roman baths and subterranean aqueducts.", gallery: [{ type: "image", src: "asset/artifact/athribis_roman.png" }] },
+                        
+    { id: 34, title: "Sun Temple of Niuserre", era: "pharaonic", gov: "giza", coverImg: "asset/artifact/abugorab.png", teaser: "Forget the pyramids! At Abu Gorab lies a massive, ruined solar temple with a giant alabaster altar shaped like a hotep symbol, built to harness the sun's power.", gallery: [ { type: "image", src: "asset/artifact/abugorab2.png" }] },        
+    { id: 37, title: "Fraser Tombs", era: "pharaonic", gov: "minya", coverImg: "asset/artifact/Fraser Tombs.png", teaser: "Carved directly into the limestone hills, these Old Kingdom rock tombs remain largely unvisited, preserving raw, untamed ancient architecture.", gallery: [{ type: "image", src: "asset/artifact/fraser.png" }] },
+    
+    { id: 38, title: "Meir Tombs", era: "pharaonic", gov: "assiut", coverImg: "asset/artifact/Meir Tombs.png", teaser: "Tombs of the provincial governors holding some of the most peculiar and highly detailed wooden models and daily-life paintings of the Middle Kingdom.", gallery: [ { type: "image", src: "asset/artifact/meir.png" }] },
+    
+    { id: 39, title: "Temple of Repit (Wannina)", era: "greek", gov: "sohag", coverImg: "asset/artifact/Temple of Repit (Wannina).png", teaser: "A gigantic, forgotten Ptolemaic temple dedicated to the lioness goddess Repit, containing thousands of recently discovered inscribed ostraca.", gallery: [{ type: "image", src: "asset/artifact/athribis_sohag.png" }] },
+    
+    { id: 40, title: "Temple of Shenhur", era: "roman", gov: "qena", coverImg: "asset/artifact/Temple of Shenhur.png", teaser: "A small, mysterious Roman temple dedicated to Isis. Its walls bear the names of emperors like Augustus and Nero, written in Egyptian hieroglyphs.", gallery: [{ type: "image", src: "asset/artifact/shenhur.png" }] },
+    
+    { id: 41, title: "Elephantine Jewish Temple Ruins", era: "coptic", gov: "aswan", coverImg: "asset/artifact/Elephantine Jewish Temple Ruins.png", teaser: "Ruins of a 5th-century BCE Jewish temple (Yeb) standing deep in southern Egypt, where Aramaic papyri were discovered detailing their daily lives.", gallery: [{ type: "image", src: "asset/artifact/elephantine_jewish.png" }] },
+    
+    { id: 42, title: "Temple of Deir el-Shelwit", era: "roman", gov: "luxor", coverImg: "asset/artifact/Temple of Deir el-Shelwit.png", teaser: "Located far off the tourist path on the West Bank, this small Roman-era temple to Isis is completely devoid of relief carvings on its exterior, hiding its beauty inside.", gallery: [{ type: "image", src: "asset/artifact/shelwit.png" }] },
+        
+    { id: 44, title: "Bagawat Necropolis", era: "coptic", gov: "new-valley", coverImg: "asset/artifact/Bagawat Necropolis.png", teaser: "One of the oldest Christian cemeteries in the world. Its mud-brick domes hold vibrant, perfectly preserved frescoes depicting biblical Exodus stories.", gallery: [ { type: "image", src: "asset/artifact/bagawat.png" }] },    
+    
+    { id: 48, title: "Gayer-Anderson Museum", era: "islamic", gov: "cairo", coverImg: "asset/artifact/Gayer-Anderson Museum.png", teaser: "A maze-like 17th-century double-house attached to Ibn Tulun Mosque. Filled with hidden rooms, secret passages, and bizarre antiquities from the Islamic world.", gallery: [{ type: "image", src: "asset/artifact/gayer.png" }] },
+    
+    { id: 49, title: "Tell Basta Museum", era: "pharaonic", gov: "sharqia", coverImg: "asset/artifact/Tell Basta Museum.png", teaser: "An open-air and indoor museum guarding the remains of the ancient cat cemetery and rare statues of the feline goddess Bastet.", gallery: [{ type: "3d", src: "asset/models/tell basta1.glb", thumb: "asset/photo for 3d/tell basta2.png" },{ type: "3d", src: "asset/models/tell bata2.glb", thumb: "asset/photo for 3d/tell basta3.png" }, { type: "image", src: "asset/artifact/basta_thumb.png" }] },
+    
+    { id: 50, title: "Ismailia Antiquities Museum", era: "roman", gov: "ismailia", coverImg: "asset/artifact/Ismailia Antiquities Museum.png", teaser: "One of Egypt's oldest regional museums, built in a beautiful French architectural style. It holds a spectacular, massive Roman mosaic floor discovered in Northern Sinai.", gallery: [{ type: "3d", src: "asset/models/bastet.glb", thumb: "asset/basta_thumb.jpg" },{ type: "image", src: "asset/artifact/ismailia_museum.png" }] },
+    
+    { id: 51, title: "Mallawi National Museum", era: "greek", gov: "minya", coverImg: "asset/artifact/Mallawi National Museum.png", teaser: "Houses a rare collection of Greco-Roman artifacts, including strange animal mummies, ibis sarcophagi, and everyday objects found in the catacombs of Tuna el-Gebel.", gallery: [{ type: "3d", src: "asset/models/bastet.glb", thumb: "asset/basta_thumb.jpg" },{ type: "image", src: "asset/artifact/mallawi.png" }] },
+    
+    { id: 52, title: "Kharga Antiquities Museum", era: "roman", gov: "new-valley", coverImg: "asset/artifact/Kharga Antiquities Museum.png", teaser: "Built to resemble an ancient mud-brick temple, this remote museum houses the legendary golden treasure of Dush and mysterious Roman-era mummy portraits.", gallery: [{ type: "3d", src: "asset/models/dush_treasure.glb", thumb: "asset/kharga_thumb.jpg" }, { type: "image", src: "asset/artifact/kharga_museum.png" }] },
+    
+    { id: 53, title: "Sohag National Museum", era: "pharaonic", gov: "sohag", coverImg: "asset/artifact/Sohag National Museum.png", teaser: "Shaped like a massive pharaonic temple resting on the Nile. It holds the forgotten statues of the Sixth Dynasty and secrets unearthed from the ancient holy city of Abydos.", gallery: [{ type: "image", src: "asset/artifact/sohag_museum.png" },{ type: "3d", src: "asset/models/sohag1.glb", thumb: "asset/photo for 3d/sohag1.png" },{ type: "3d", src: "asset/models/sohag2.glb", thumb: "asset/photo for 3d/sohag2.png" }] },
+    
+    { id: 54, title: "Kom Aushim Museum", era: "greek", gov: "fayoum", coverImg: "asset/artifact/Kom Aushim Museum.png", teaser: "A small museum acting as the gateway to the Karanis ruins. It displays incredibly preserved daily life objects, ancient toys, glassware, and haunting Fayoum portraits.", gallery: [{ type: "image", src: "asset/artifact/Kom Aushim.png" }] },
+    
+    { id: 55, title: "Al-Muharraq Monastery Museum", era: "coptic", gov: "assiut", coverImg: "asset/artifact/Al-Muharraq Monastery Museum.png", teaser: "Hidden within one of the oldest functioning monasteries in the world. This small museum holds ancient Coptic manuscripts, textiles, and icons dating back to the first centuries.", gallery: [{ type: "image", src: "asset/artifact/muharraq_museum.png" }] },
+    
+    { id: 56, title: "BA Antiquities Museum", era: "greek", gov: "alexandria", coverImg: "asset/artifact/BA Antiquities Museum.png", teaser: "Situated underground beneath the Library of Alexandria, this museum contains colossal statues of Ptolemaic queens hauled directly from the sunken ancient harbor.", gallery: [{ type: "3d", src: "asset/models/sunken_statue.glb", thumb: "asset/ba_thumb.jpg" }, { type: "image", src: "asset/artifact/ba_museum.png" }] },
+    
+    { id: 57, title: "Matrouh Antiquities Museum", era: "pharaonic", gov: "matrouh", coverImg: "asset/artifact/Matrouh Antiquities Museum.png", teaser: "A modern treasure trove hidden inside the public library, detailing the ancient frontier wars and trade routes between the Pharaohs and the Libyan tribes.", gallery: [{ type: "image", src: "asset/artifact/matrouh_museum.png" }] },
+    
+    { id: 58, title: "Tanta Antiquities Museum", era: "roman", gov: "gharbia", coverImg: "asset/artifact/Tanta Antiquities Museum.png", teaser: "Often ignored by tourists, this five-story museum holds rare artifacts from the Delta, including unique Greco-Roman bronze statues and ancient medical tools.", gallery: [{ type: "image", src: "asset/artifact/tanta_museum.png" }] },
+    
+    { id: 59, title: "Museum of Islamic Ceramics", era: "islamic", gov: "cairo", coverImg: "asset/artifact/Museum of Islamic Ceramics.png", teaser: "Housed in a breathtaking 19th-century palace in Zamalek. It displays masterpieces of ceramic art, glasswork, and intricate tiles from the Fatimid and Mamluk eras.", gallery: [{ type: "image", src: "asset/artifact/ceramics_museum.png" }] },
+    
+    { id: 60, title: "Kafr El-Sheikh Museum", era: "pharaonic", gov: "kafr-elsheikh", coverImg: "asset/artifact/Kafr El-Sheikh Museum.png", teaser: "Focuses on the ancient predynastic city of Buto. Its halls are guarded by rare, massive black granite statues of the fearsome lioness goddess Sekhmet.", gallery: [{ type: "3d", src: "asset/models/sekhmet.glb", thumb: "asset/kafr_thumb.jpg" }, { type: "image", src: "asset/artifact/kafr_museum.png" }] },
+    { id: 62, title: "Suez National Museum", era: "pharaonic", gov: "suez", coverImg: "asset/artifact/Suez National Museum.png", teaser: "Guarding the artifacts of the ancient Sesostris Canal that once linked the Nile to the Red Sea, including massive pharaonic naval inscriptions.", gallery: [{ type: "image", src: "asset/artifact/suez_museum.png" }] },
+    { id: 68, title: "Mit Rahina Open Air Museum", era: "pharaonic", gov: "giza", coverImg: "asset/artifact/Mit Rahina Open Air Museum.png", teaser: "Surrounding the fallen colossus of Ramses II, this open-air museum hides the remnants of Memphis, the very first capital of ancient Egypt.", gallery: [{ type: "image", src: "asset/artifact/mit_rahina.png" }] },
+    { id: 70, title: "Alexan Pasha Palace Museum", era: "coptic", gov: "assiut", coverImg: "asset/artifact/Alexan Pasha Palace Museum.png", teaser: "A stunning 1910 palace overlooking the Nile. Once a royal residence, its intricate architecture reflects the rich Coptic and modern heritage of Assiut.", gallery: [{ type: "image", src: "asset/artifact/alexan.png" }] },
+    { id: 74, title: "Hurghada Antiquities Museum", era: "roman", gov: "red-sea", coverImg: "asset/artifact/Hurghada Antiquities Museum.png", teaser: "Far from the beaches, this museum holds stunning Roman portrait busts and artifacts detailing the ancient Red Sea trade routes.", gallery: [{ type: "image", src: "asset/artifact/hurghada_museum.png" },{ type: "3d", src: "asset/models/ghrda.glb", thumb: "asset/photo for 3d/ghrda.png" }] },
+    
+    { 
+        id: 75, 
+        title: "Farouk's Corner Museum", 
+        era: "modern", 
+        gov: "cairo", 
+        coverImg: "asset/artifact/Farouk's Corner Museum.png", 
+        teaser: "King Farouk's secret riverside retreat shaped like a boat. It remains completely frozen in time with its original 1940s royal furniture and quiet elegance.", 
+        gallery: [{ type: "image", src: "asset/artifact/farouk_corner.png"} , { type: "3d", src: "asset/models/rokn farok1.glb", thumb: "asset/photo for 3d/foaad.jpg" },{ type: "3d", src: "asset/models/rokn farok.glb", thumb: "asset/photo for 3d/rokn1.png" }] 
+    },
+    
+    { 
+        id: 76, 
+        title: "The Agricultural Museum", 
+        era: "modern", 
+        gov: "giza", 
+        coverImg: "asset/artifact/The Agricultural Museum.png", 
+        teaser: "Founded in 1930, it's a massive, eerie time capsule containing vintage dioramas, rare extinct animal taxidermy, and hidden royal agricultural secrets.", 
+        gallery: [{ type: "image", src: "asset/artifact/agricultural_museum.png" }, { type: "image", src: "asset/artifact/agricultural_inside.png" }] 
+    },
+    
+    { 
+        id: 77, 
+        title: "Egypt Railway Museum", 
+        era: "modern", 
+        gov: "cairo", 
+        coverImg: "asset/artifact/Egypt Railway Museum.png", 
+        teaser: "Hidden right inside Ramses Station. This 1933 museum houses the breathtaking, lavish private royal train of Empress Eugenie and Khedive Ismail.", 
+        gallery: [{ type: "image", src: "asset/artifact/railway_museum.png" }] 
+    },
+    
+    { 
+        id: 78, 
+        title: "Champollion House", 
+        era: "modern", 
+        gov: "cairo", 
+        coverImg: "asset/artifact/Champollion House.png", 
+        teaser: "An abandoned, hauntingly beautiful 19th-century palace in the heart of Downtown Cairo, wrapped in urban legends and forgotten royal drama.", 
+        gallery: [ { type: "image", src: "asset/artifact/champollion.png" }] 
+    },
+    
+    { 
+        id: 79, 
+        title: "The Postal Museum", 
+        era: "modern", 
+        gov: "cairo", 
+        coverImg: "asset/artifact/postal_museum.png", 
+        teaser: "Tucked away inside the historic Attaba Post Office, holding microscopic stamps, secret royal letters, and the hidden history of early modern communications.", 
+        gallery: [{ type: "image", src: "asset/artifact/postal_museum2.png" }] 
+    }
+];
+
+        const grid = document.getElementById('collectionGrid');
+        const eraBtns = document.querySelectorAll('.era-btn');
+        const govSelect = document.getElementById('govSelect');
+        const modal = document.getElementById('detailModal');
+        const closeModalBtn = document.getElementById('closeModal');
+
+        const mainImg = document.getElementById('mainImage');
+        const main3D = document.getElementById('main3D');
+        const mediaHint = document.getElementById('mediaHint');
+        const thumbsContainer = document.getElementById('thumbnailsContainer');
+
+        function renderCards(data) {
+            grid.innerHTML = ''; 
+            const shuffled = data.sort(() => 0.5 - Math.random()); 
+
+            shuffled.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'artifact-card';
+                card.innerHTML = `
+                    <img src="${item.coverImg}" alt="${item.title}" onerror="this.src='asset/placeholder.jpg'">
+                    <div class="card-info">
+                        <span class="card-era-gov">${item.era} • ${item.gov.replace('-', ' ')}</span>
+                        <h3 class="card-title">${item.title}</h3>
+                    </div>
+                `;
+                card.addEventListener('click', () => openModal(item));
+                grid.appendChild(card);
+            });
+        }
+
+        function filterData() {
+            const activeEra = document.querySelector('.era-btn.active').dataset.era;
+            const activeGov = govSelect.value;
+
+            const filtered = artifacts.filter(item => {
+                const matchEra = (activeEra === 'all' || item.era === activeEra);
+                const matchGov = (activeGov === 'all' || item.gov === activeGov);
+                return matchEra && matchGov;
+            });
+
+            renderCards(filtered);
+        }
+
+        eraBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                eraBtns.forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                filterData();
+            });
+        });
+        govSelect.addEventListener('change', filterData);
+
+        function openModal(item) {
+            document.getElementById('modalTitle').innerText = item.title;
+            document.getElementById('modalMeta').innerText = `${item.era.toUpperCase()} • ${item.gov.replace('-', ' ').toUpperCase()}`;
+            document.getElementById('modalTeaser').innerText = item.teaser;
+            
+            thumbsContainer.innerHTML = ''; 
+
+            if (item.gallery && item.gallery.length > 0) {
+                item.gallery.forEach((media, index) => {
+                    const thumb = document.createElement('div');
+                    thumb.className = `thumb-box ${index === 0 ? 'active' : ''}`; 
+                    
+                    const thumbImgSrc = media.type === '3d' ? (media.thumb || item.coverImg) : media.src;
+                    
+                    thumb.innerHTML = `
+                        <img src="${thumbImgSrc}" onerror="this.src='asset/placeholder.jpg'">
+                        ${media.type === '3d' ? '<div class="thumb-3d-badge">3D</div>' : ''}
+                    `;
+
+                    thumb.addEventListener('click', () => {
+                        document.querySelectorAll('.thumb-box').forEach(t => t.classList.remove('active'));
+                        thumb.classList.add('active');
+                        displayMedia(media);
+                    });
+
+                    thumbsContainer.appendChild(thumb);
+                });
+
+                displayMedia(item.gallery[0]); 
+            } else {
+                displayMedia({ type: 'image', src: item.coverImg });
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function displayMedia(media) {
+            if (media.type === 'image') {
+                main3D.style.display = 'none';
+                mediaHint.style.display = 'none';
+                main3D.src = ''; 
+                mainImg.src = media.src;
+                mainImg.style.display = 'block';
+            } else if (media.type === '3d') {
+                mainImg.style.display = 'none';
+                main3D.src = media.src;
+                main3D.style.display = 'block';
+                mediaHint.style.display = 'block';
+            }
+        }
+
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            main3D.src = ''; 
+        });
+
+        modal.addEventListener('click', (e) => {
+            if(e.target === modal) closeModalBtn.click();
+        });
+
+        renderCards(artifacts);
+    </script>
+</body>
+</html>

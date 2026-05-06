@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore - كنوز مصر المنسية</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Cairo:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <div class="page-transition-overlay active" id="pageTransitionIn"></div>
+    
+    <div class="time-gate-overlay" id="timeGate">
+        <video loop playsinline class="bg-video" id="gateVideo">
+            <source src="asset/video.mp4" type="video/mp4">
+        </video>
+        <div class="gate left-gate"></div>
+        <div class="gate right-gate"></div>
+        
+        <div class="gate-content">
+            <h1 class="gate-title">Time Gate</h1>
+            <p class="gate-desc">Get ready to discover treasures whose stories have not yet been told... <br>A journey through ancient eras, different provinces, and forgotten ruins that your eyes have never seen before.</p>
+            <button class="enter-gate-btn" onclick="openTimeGate()" style="font-weight: bold;">Cross the portal now</button>
+        </div>
+    </div>
+    
+    
+    
+    <section class="explore-page">
+        
+        <div class="exploration-mask" id="explorationMask"></div>
+
+        <header class="navbar">
+            <div class="Logo-container">
+                <div class="Logo-text">
+                    <div class="ar">استكشف كنوز مصر المنسيه</div>
+                    <div class="en">Explore the forgotten treasures of Egypt</div>
+                </div>
+                <div class="Logo-icon">
+                    <img src="asset/eye of hours.png" alt="Eye of Hours logo">
+                </div>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="explore.html" class="active">Explore</a></li>
+                    <li><a href="support.html">Support</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                </ul>
+            </nav>
+             <div class="language-toggle">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                </svg>
+                AR | EN
+            </div>
+            <div class="hamburger" id="hamburgerMenu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </header>
+
+        <div class="hidden-artifact-container">
+            
+            <div class="artifact-wrapper" onclick="revealArtifact()">
+                <img src="asset/talbasta.png" alt="Tell Basta" class="artifact-image">
+                <div class="artifact-content">
+                <h2 class="artifact-quote">"Tell Basta.. Capital of Joy & City of the Gods"</h2>
+                <p class="artifact-hint">Sharqia. Cult center of the cat goddess "Bastet". A once-vibrant city known for its loud festivals, its ruins still hide secrets from the 22nd Dynasty.</p>
+                </div>
+            </div>
+
+            <div class="artifact-wrapper" onclick="revealArtifact()">
+                <img src="asset/lahun.png" alt="Lahun Pyramid" class="artifact-image">
+                <div class="artifact-content">
+                <h2 class="artifact-quote">"Lahun Pyramid.. The Mystery of Fayum & The Thieves' Maze"</h2>
+                <p class="artifact-hint">Fayum - Middle Kingdom. A mud-brick masterpiece built by "Senusret II", featuring a complex interior design and an underground maze brilliantly engineered to mislead tomb robbers.</p>
+                </div>
+            </div>
+
+            <div class="artifact-wrapper" onclick="revealArtifact()">
+                <img src="asset/silsila.png" alt="Gebel el-Silsila" class="artifact-image">
+                <div class="artifact-content">
+                <h2 class="artifact-quote">"Gebel el-Silsila.. The Great Quarries of the Pharaohs"</h2>
+                <p class="artifact-hint">North of Aswan. Not just an archaeological site, but the largest sandstone quarry. Here, stones for the greatest temples were cut, and its walls are adorned with rare rock-cut shrines.</p>
+                </div>
+            </div>
+
+            <div class="artifact-wrapper" onclick="revealArtifact()">
+                <img src="asset/serabit.png" alt="Serabit el-Khadim" class="artifact-image">
+                <div class="artifact-content">
+                <h2 class="artifact-quote">"Serabit el-Khadim.. Temple of the Lady of Turquoise"</h2>
+                <p class="artifact-hint">South Sinai. An isolated temple atop a towering mountain peak, where the Pharaohs secretly extracted turquoise under the protection of the goddess Hathor.</p>
+                </div>
+            </div>
+
+            <div class="artifact-wrapper" onclick="revealArtifact()">
+                <img src="asset/tuna-elgebel.png" alt="Tuna el-Gebel" class="artifact-image">
+                <div class="artifact-content">
+                <h2 class="artifact-quote">"Tuna el-Gebel.. Catacombs of Mystery & The Martyr of Love"</h2>
+                <p class="artifact-hint">Minya. A necropolis brilliantly blending ancient Egyptian and Greek art, housing massive underground catacombs and the famous mummy of "Isadora".</p>
+                </div>
+            </div>
+
+            <div class="artifact-wrapper" onclick="revealArtifact()">
+                <img src="asset/alqasr.png" alt="Al-Qasr Islamic Village" class="artifact-image">
+                <div class="artifact-content">
+                <h2 class="artifact-quote">"Al-Qasr Village.. The Ancient Mud Maze"</h2>
+                <p class="artifact-hint">Dakhla Oasis. A complete Islamic city that survived time, featuring roofed streets entirely built of mud-brick and doum palm wood.</p>
+                </div>
+            </div>
+
+            <div class="artifact-wrapper" onclick="revealArtifact()">
+                <img src="asset/sakakini.png" alt="Sakakini Palace" class="artifact-image">
+                <div class="artifact-content">
+                <h2 class="artifact-quote">"Sakakini Palace.. Legends of Italian Rococo"</h2>
+                <p class="artifact-hint">Cairo (1897 AD). An architectural masterpiece standing as a myth-haunted palace, featuring hundreds of statues and artistic details unmatched in modern architecture.</p>
+                </div>
+            </div>
+
+        </div>
+
+<div class="mouse-scroll-indicator">
+    <div class="mouse-icon">
+        <span class="wheel"></span>
+    </div>
+    <p class="mouse-text">SCROLL TO UNCOVER</p>
+</div>
+<div class="reveal-more-container">
+    
+    <div class="horus-eye-container">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" class="horus-eye-svg">
+            <path d="M10,25 Q60,5 110,25" fill="none" stroke="#D4AF37" stroke-width="3" stroke-linecap="round"/>
+            <path d="M15,45 Q60,20 105,45 Q60,70 15,45" fill="none" stroke="#D4AF37" stroke-width="3"/>
+            <path d="M60,57.5 L60,75" fill="none" stroke="#D4AF37" stroke-width="3" stroke-linecap="round"/>
+            <path d="M45,55 Q35,75 20,70" fill="none" stroke="#D4AF37" stroke-width="3" stroke-linecap="round"/>
+            <circle class="horus-pupil" cx="60" cy="45" r="6" fill="#D4AF37"/>
+        </svg>
+    </div>
+
+    <button class="ancient-reveal-btn" onclick="scrollToNextSection()">
+    <span class="btn-text">UNCOVER THE HIDDEN LAYERS</span>
+    <div class="btn-glow"></div>
+</button>
+
+</div>
+
+    </section>
+<div id="hidden-layers" class="hidden-era-section">
+    
+    <section class="eras-section">
+        <div class="mystic-glow"></div>
+        <div class="eras-subtitle-wrapper">
+            <span class="line"></span>
+            <p class="eras-subtitle">THROUGH THE AGES</p>
+            <span class="line"></span>
+        </div>
+        <div class="eras-words-container">
+            <span class="era-word">PHARAONIC</span>
+            <span class="era-word">GREEK</span>
+            <span class="era-word">ROMAN</span>
+            <span class="era-word" style="font-size: 4.5rem;">JEWISH & COPTIC</span>
+            <span class="era-word">ISLAMIC</span>
+            <span class="era-word">MODERN</span>
+        </div>
+        <p class="eras-footer">Layers of history waiting to be discovered</p>
+    </section>
+
+    <section class="monuments-slider-section">
+        <div class="slider-header">
+            <a href="collection.html" class="view-all-btn">
+                VIEW ALL COLLECTION <span class="arrow">→</span>
+            </a>
+        </div>
+        <div class="slider-container">
+            <div class="monument-card"><div class="card-img-wrapper"><img src="asset/silsilaa.png" alt="Gebel el-Silsila"></div><div class="card-info"><span class="card-era">NEW KINGDOM • ~1500 BCE</span><h3 class="card-title">Gebel el-Silsila</h3><span class="card-location">Aswan</span></div></div>
+            <div class="monument-card"><div class="card-img-wrapper"><img src="asset/qarun.png" alt="Qasr Qarun"></div><div class="card-info"><span class="card-era">PTOLEMAIC / ROMAN • ~300 BCE</span><h3 class="card-title">Qasr Qarun</h3><span class="card-location">Fayoum</span></div></div>
+            <div class="monument-card"><div class="card-img-wrapper"><img src="asset/benihasan.png" alt="Beni Hasan Tombs"></div><div class="card-info"><span class="card-era">MIDDLE KINGDOM • ~2000 BCE</span><h3 class="card-title">Beni Hasan Tombs</h3><span class="card-location">Minya</span></div></div>
+            <div class="monument-card"><div class="card-img-wrapper"><img src="asset/nilometer.png" alt="The Nilometer"></div><div class="card-info"><span class="card-era">ISLAMIC (ABBASID) • 861 CE</span><h3 class="card-title">The Nilometer</h3><span class="card-location">Cairo</span></div></div>
+            <div class="monument-card"><div class="card-img-wrapper"><img src="asset/whitemonastery.png" alt="White Monastery"></div><div class="card-info"><span class="card-era">COPTIC • 5th Century CE</span><h3 class="card-title">White Monastery</h3><span class="card-location">Sohag</span></div></div>
+            <div class="monument-card"><div class="card-img-wrapper"><img src="asset/seboua.png" alt="Wadi el-Seboua"></div><div class="card-info"><span class="card-era">NEW KINGDOM • ~1250 BCE</span><h3 class="card-title">Wadi el-Seboua</h3><span class="card-location">Aswan</span></div></div>
+            <div class="monument-card"><div class="card-img-wrapper"><img src="asset/anfushi.png" alt="Anfushi Necropolis"></div><div class="card-info"><span class="card-era">PTOLEMAIC • ~250 BCE</span><h3 class="card-title">Anfushi Necropolis</h3><span class="card-location">Alexandria</span></div></div>
+            <div class="monument-card"><div class="card-img-wrapper"><img src="asset/petosiris.png" alt="Tomb of Petosiris"></div><div class="card-info"><span class="card-era">LATE PERIOD • ~300 BCE</span><h3 class="card-title">Tomb of Petosiris</h3><span class="card-location">Minya</span></div></div>
+            <div class="monument-card"><div class="card-img-wrapper"><img src="asset/aqmar.png" alt="Al-Aqmar Mosque"></div><div class="card-info"><span class="card-era">ISLAMIC (FATIMID) • 1125 CE</span><h3 class="card-title">Al-Aqmar Mosque</h3><span class="card-location">Cairo</span></div></div>
+            <div class="monument-card"><div class="card-img-wrapper"><img src="asset/kalabsha.png" alt="Temple of Kalabsha"></div><div class="card-info"><span class="card-era">ROMAN • ~30 BCE</span><h3 class="card-title">Temple of Kalabsha</h3><span class="card-location">Aswan</span></div></div>
+        </div>
+
+        <div class="slider-controls">
+            <button class="nav-arrow" id="prevCardBtn">←</button>
+            <div class="slider-dots" id="sliderDots"></div>
+            <button class="nav-arrow" id="nextCardBtn">→</button>
+        </div>
+    </section>
+</div>
+    <footer class="main-footer">
+    <div class="footer-container">
+        
+        <div class="footer-column about">
+            <div class="footer-logo">
+                <img src="asset/eye of hours.png" alt="Logo">
+                <span>Hidden Treasures</span>
+            </div>
+            <p>Uncovering the untold stories of Egypt's forgotten heritage. Join our journey to rediscover history.</p>
+        </div>
+
+        <div class="footer-column links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="explore.html">Explore</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column contact">
+            <h3>Stay Connected</h3>
+            <div class="footer-socials">
+                <a href="#">FB</a>
+                <a href="#">IG</a>
+                <a href="#">TW</a>
+            </div>
+            <p>Contact: info@egyptreasures.com</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Hidden Treasures Project | Designed with Passion for Heritage</p>
+    </div>
+</footer>
+   <script>
+        window.addEventListener('load', () => {
+            const transitionOverlayIn = document.getElementById('pageTransitionIn');
+            if (transitionOverlayIn) {
+                setTimeout(() => {
+                    transitionOverlayIn.classList.remove('active');
+                }, 50);
+            }
+            const gateOverlay = document.getElementById('timeGate');
+        const expMask = document.getElementById('explorationMask');
+        
+        const navEntries = performance.getEntriesByType("navigation");
+        const isReload = navEntries.length > 0 && navEntries[0].type === "reload";
+        
+        const gatePassed = sessionStorage.getItem('gatePassed') === 'true';
+
+        if (gatePassed && isReload) {
+            if (gateOverlay) gateOverlay.style.display = 'none'; 
+            if (expMask) expMask.classList.add('active');
+        } else {
+            sessionStorage.removeItem('gatePassed');
+        }
+        });
+        
+
+        function openTimeGate() {
+            const gateOverlay = document.getElementById('timeGate');
+            const btn = document.querySelector('.enter-gate-btn');
+            const vid = document.getElementById('gateVideo');
+            const bgAudio = document.getElementById('bgMusic'); 
+            const expMask = document.getElementById('explorationMask'); 
+            
+            sessionStorage.setItem('gatePassed', 'true');
+
+        if (btn) {
+            btn.style.opacity = '0';
+            btn.style.pointerEvents = 'none';
+        }
+        
+        if (vid) {
+            vid.currentTime = 0; 
+            vid.muted = false;   
+            vid.play();          
+        }
+        
+        gateOverlay.classList.add('state-quake');
+        
+        setTimeout(() => {
+            gateOverlay.classList.remove('state-quake');
+            
+            setTimeout(() => {
+                gateOverlay.classList.add('open');
+            }, 50);
+            
+            setTimeout(() => {
+                if (expMask) {
+                    expMask.classList.add('active');
+                }
+
+                gateOverlay.style.opacity = '0';
+                gateOverlay.style.transition = 'opacity 1.5s ease';
+                
+                setTimeout(() => {
+                    gateOverlay.style.display = 'none'; 
+                    if (vid) vid.pause(); 
+                    
+                    if (bgAudio) {
+                        bgAudio.volume = 1.0; 
+                        bgAudio.play(); 
+                    }
+                }, 1500);
+
+            }, 4500); 
+            
+        }, 1500); 
+    }
+
+        document.addEventListener('mousemove', (e) => {
+            const mask = document.getElementById('explorationMask');
+            
+            if (mask && mask.classList.contains('active')) {
+                const x = e.clientX;
+                const y = e.clientY;
+                
+                const maskStyle = `radial-gradient(circle 200px at ${x}px ${y}px, transparent 0%, rgba(0,0,0,1) 80%)`;
+                mask.style.webkitMaskImage = maskStyle;
+                mask.style.maskImage = maskStyle;
+            }
+        });
+
+        function revealArtifact() {
+            document.body.classList.add('revealed-mode');
+        }
+        const hamburger = document.getElementById('hamburgerMenu');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+function scrollToNextSection() {
+    const nextSection = document.getElementById('hidden-layers');
+    
+    if (nextSection) {
+        nextSection.classList.remove('hidden-era-section');
+        nextSection.classList.add('visible-era-section');
+        
+        setTimeout(() => {
+            nextSection.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'center' 
+            });
+        }, 100);
+    }
+}  
+function scrollToNextSection() {
+    const nextSection = document.getElementById('hidden-layers');
+    if (nextSection) {
+        nextSection.classList.remove('hidden-era-section');
+        nextSection.classList.add('visible-era-section');
+        setTimeout(() => {
+            nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 150);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const cards = document.querySelectorAll('.monument-card');
+    const dotsContainer = document.getElementById('sliderDots');
+    const prevBtn = document.getElementById('prevCardBtn');
+    const nextBtn = document.getElementById('nextCardBtn');
+    
+    let currentIndex = 0;
+    let autoPlayInterval;
+
+    if(cards.length === 0) return;
+
+    cards.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => jumpToCard(index));
+        dotsContainer.appendChild(dot);
+    });
+    
+    const dots = document.querySelectorAll('.dot');
+
+    function updateSlider() {
+        cards.forEach((card, index) => {
+            card.classList.remove('active', 'prev1', 'next1', 'prev2', 'next2');
+            let offset = index - currentIndex;
+            
+            if (offset < -Math.floor(cards.length / 2)) offset += cards.length;
+            if (offset > Math.floor(cards.length / 2)) offset -= cards.length;
+
+            if (offset === 0) card.classList.add('active');
+            else if (offset === -1) card.classList.add('prev1');
+            else if (offset === 1) card.classList.add('next1');
+            else if (offset === -2) card.classList.add('prev2');
+            else if (offset === 2) card.classList.add('next2');
+        });
+
+        dots.forEach(dot => dot.classList.remove('active'));
+        if (dots[currentIndex]) dots[currentIndex].classList.add('active');
+    }
+
+    function goNext() {
+        currentIndex = (currentIndex + 1) % cards.length;
+        updateSlider();
+        resetAutoPlay(); 
+    }
+
+    function goPrev() {
+        currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+        updateSlider();
+        resetAutoPlay();
+    }
+
+    function jumpToCard(index) {
+        currentIndex = index;
+        updateSlider();
+        resetAutoPlay();
+    }
+
+    function startAutoPlay() {
+        autoPlayInterval = setInterval(goNext, 2000); 
+    }
+
+    function resetAutoPlay() {
+        clearInterval(autoPlayInterval);
+        startAutoPlay();
+    }
+
+    if (nextBtn) nextBtn.addEventListener('click', goNext);
+    if (prevBtn) prevBtn.addEventListener('click', goPrev);
+    
+    cards.forEach((card, index) => {
+        card.addEventListener('click', () => {
+            if (!card.classList.contains('active')) jumpToCard(index);
+        });
+    });
+
+    updateSlider();
+    startAutoPlay();
+});     
+    </script>
+    
+</body>
+</html>
