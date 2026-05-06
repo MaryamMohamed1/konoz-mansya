@@ -281,6 +281,44 @@ body{
         height: 400px;
     }
 }
+/* =========================================
+   تظبيط الموبايل للصفحة الرئيسية (Home Page)
+   ========================================= */
+@media (max-width: 768px) {
+    
+    body, html {
+        overflow-x: hidden;
+    }
+    .navbar {
+        padding: 15px 5% !important;
+    }
+    
+    .Logo-text .ar {
+        font-size: 1.2rem !important; 
+    }
+    
+    .Logo-text .en {
+        font-size: 0.75rem !important;
+        white-space: normal !important;
+    }
+
+    .Logo-icon img {
+        width: 35px !important;
+    }
+    .hero-content {
+        padding: 0 20px;
+        text-align: center; 
+        align-items: center;
+    }
+    .hero-content h1 { 
+        font-size: 2.2rem !important; 
+        line-height: 1.3 !important;
+        width: 100%;
+        white-space: normal !important;
+        word-wrap: break-word;
+        margin-top: 20px;
+    }
+}
 /*section about*/
 .about-section{
     position: relative;
@@ -940,6 +978,96 @@ textarea:focus, input:focus {
     .upload-btn, .submit-discovery-btn {
         padding: 12px;
         font-size: 0.9rem;
+    }
+}
+/* 
+   تظبيط الموبايل  (Support Page)
+    */
+@media (max-width: 768px) {
+    
+    .support-split-container {
+        flex-direction: column !important;
+        gap: 40px !important;
+        padding: 20px 10px !important;
+    }
+
+    .support-panel {
+        width: 100% !important;
+        padding: 15px !important;
+        box-sizing: border-box;
+    }
+
+    .support-title {
+        font-size: 1.8rem !important;
+        line-height: 1.3 !important;
+        text-align: center !important;
+        word-wrap: break-word;
+    }
+
+    .support-subtitle {
+        font-size: 1rem !important;
+        text-align: center !important;
+        margin-top: 20px;
+    }
+
+    .support-panel p {
+        font-size: 0.9rem !important;
+        text-align: center !important;
+        line-height: 1.6;
+        padding: 0 10px;
+    }
+
+    .support-icon {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin: 20px 0;
+    }
+
+    .social-link {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 25px !important;
+        margin-top: 20px;
+    }
+
+    .social-item {
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+    }
+
+    .social-item img {
+        width: 50px !important; 
+        margin-bottom: 5px !important;
+    }
+
+    .social-item span {
+        font-size: 0.85rem !important;
+    }
+
+    .discovery-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .deco-img {
+        width: 40px !important; 
+    }
+
+    .discovery-form {
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    .white-input, 
+    .upload-btn, 
+    .submit-discovery-btn {
+        width: 100% !important; 
+        box-sizing: border-box;
     }
 }
 /*explore section*/
