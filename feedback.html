@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Feedback - كنوز منسيه</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Cairo:wght@600;700&family=Open+Sans:wght@400;600&display=swap"rel="stylesheet">
+</head>
+<body>
+    <section class="feedback-section">
+        <header class="navbar">
+            <div class="Logo-container">
+                <div class="Logo-text">
+                    <div class="ar">استكشف كنوز مصر المنسيه</div>
+                    <div class="en">Explore the forgotten treasures of Egypt</div>
+                </div>
+                <div class="Logo-icon">
+                    <img src="asset/eye of hours.png" alt="Eye of Hours logo">
+                </div>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="explore.html">Explore</a></li>
+                    <li><a href="support.html">Support</a></li>
+                    <li><a href="feedback.html" class="active">Feedback</a></li>
+                </ul>
+            </nav>
+             <div class="language-toggle">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                </svg>
+                AR | EN
+            </div>
+            <div class="hamburger" id="hamburgerMenu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </header>
+        <div class="main-container">
+
+        <div class="section-header">
+            <h1>YOUR IMPRESSION</h1>
+            <p>Tell us about your journey through history. We value your thoughts.</p>
+        </div>
+
+        <form class="feedback-form-card" id="myfeedbackform">
+            <div class="rating-input">
+                <span class="rating-label">Overall Experience</span>
+                <div class="stars-input" id="star-rating">
+                    <span data-value="5">★</span><span data-value="4">★</span><span data-value="3">★</span><span data-value="2">★</span><span data-value="1">★</span>
+                </div>
+            </div>
+            <div class="row-inputs">
+                <div class="input-group">
+                    <label>Full Name<span class="required-star">*</span></label>
+                    <input type="text" required>
+                </div>
+                <div class="input-group">
+                    <label>Email Address<span class="required-star">*</span></label>
+                    <input type="email" required>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>How can we improve your browsing experience?</label>
+                <textarea placeholder="Write your suggestions here..." required></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">Send Feedback</button>
+        </form>
+        <div class="community-section">
+    <h2 class="community-header">User Testimonials</h2>
+    
+    <div class="reviews-grid">
+        <div class="review-card">
+            <div class="review-header">
+                <div class="reviewer-info">
+                    <div class="user-avatar">👤</div>
+                    <span class="reviewer-name">James Wilson</span>
+                </div>
+                <div class="review-stars">★★★★★</div>
+            </div>
+            <p class="review-text">"The website design is incredibly immersive. I love the smooth navigation and the high-quality imagery."</p>
+        </div>
+        <div class="review-card">
+            <div class="review-header">
+                <div class="reviewer-info">
+                    <div class="user-avatar">👤</div>
+                    <span class="reviewer-name">Elena Rossi</span>
+                </div>
+                <div class="review-stars">★★★★★</div>
+            </div>
+            <p class="review-text">"The history is alive here, simply stunning"</p>
+        </div>
+        <div class="review-card">
+            <div class="review-header">
+                <div class="reviewer-info">
+                    <div class="user-avatar">👤</div>
+                    <span class="reviewer-name">Mark Thompson</span>
+                </div>
+                <div class="review-stars">★★★★☆</div>
+            </div>
+            <p class="review-text">"A great resource with a very clean layout. Loading speeds are impressive considering the visual depth."</p>
+        </div>
+        <div class="review-card">
+            <div class="review-header">
+                <div class="reviewer-info">
+                    <div class="user-avatar">👤</div>
+                    <span class="reviewer-name">Sophia L.</span>
+                </div>
+                <div class="review-stars">★★★★★</div>
+            </div>
+            <p class="review-text">"Everything is so well-organized. This has become my favorite place to explore history from home."</p>
+        </div>
+    </div>
+
+    <div class="reviews-grid hidden-cards" id="moreTestimonials">
+        <div class="review-card">
+            <div class="review-header">
+                <div class="reviewer-info">
+                    <div class="user-avatar">👤</div>
+                    <span class="reviewer-name">Omar Tarek</span>
+                </div>
+                <div class="review-stars">★★★★★</div>
+            </div>
+            <p class="review-text">"An amazing journey! The way the forgotten treasures are presented is just mind-blowing. Great job on the UI."</p>
+        </div>
+        <div class="review-card">
+            <div class="review-header">
+                <div class="reviewer-info">
+                    <div class="user-avatar">👤</div>
+                    <span class="reviewer-name">Sarah Jenkins</span>
+                </div>
+                <div class="review-stars">★★★★☆</div>
+            </div>
+            <p class="review-text">"Loved the interactive flashlight feature in the explore section. Really feels like exploring a real tomb!"</p>
+        </div>
+    </div>
+
+    <div class="discover-btn-container">
+        <button class="discover-btn" id="discoverBtn" onclick="toggleReviews()">
+            <span style="font-size: 12px; display: block; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Discover More</span>
+            <span class="arrow">▼</span>
+        </button>
+    </div>
+    </div>
+        </div>
+        <footer class="main-footer">
+    <div class="footer-container">
+        
+        <div class="footer-column about">
+            <div class="footer-logo">
+                <img src="asset/eye of hours.png" alt="Logo">
+                <span>Hidden Treasures</span>
+            </div>
+            <p>Uncovering the untold stories of Egypt's forgotten heritage. Join our journey to rediscover history.</p>
+        </div>
+
+        <div class="footer-column links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="explore.html">Explore</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column contact">
+            <h3>Stay Connected</h3>
+            <div class="footer-socials">
+                <a href="#">FB</a>
+                <a href="#">IG</a>
+                <a href="#">TW</a>
+            </div>
+            <p>Contact: info@egyptreasures.com</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Hidden Treasures Project | Designed with Passion for Heritage</p>
+    </div>
+</footer>
+
+
+    <script>
+        const stars = document.querySelectorAll('.stars-input span');
+        stars.forEach(star => {
+            star.addEventListener('click', function() {
+                stars.forEach(s => s.classList.remove('active'));
+                this.classList.add('active');
+                let prev = this.nextElementSibling;
+                while(prev) {
+                    prev.classList.add('active');
+                    prev = prev.nextElementSibling;
+                }
+            });
+        });
+        const feedbackform=document.getElementById('myfeedbackform');
+        feedbackform.addEventListener('submit',function(event){
+            event.preventDefault();
+            alert('Thank you for your feedback! تم استلام رأيك بنجاح.')
+            feedbackform.reset();
+            stars.forEach(s => s.classList.remove('active'));
+        });
+        const communitySection = document.querySelector('.community-section');
+    if (communitySection) {
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                } else {
+                    entry.target.classList.remove('show');
+                }
+            });
+        }, {
+            threshold: 0.05
+        });
+
+        scrollObserver.observe(communitySection);
+    }
+    function toggleReviews() {
+        const extraCards = document.getElementById('moreTestimonials');
+        const btn = document.getElementById('discoverBtn');
+
+        if (!extraCards.classList.contains('show')) {
+            extraCards.classList.add('show');
+            btn.innerHTML = `
+                <span style="font-size: 12px; display: block; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Show Less</span>
+                <span class="arrow" style="display: block; animation: bounce 2s infinite;">▲</span>
+            `;
+        } else {
+            extraCards.classList.remove('show');
+            btn.innerHTML = `
+                <span style="font-size: 12px; display: block; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Discover More</span>
+                <span class="arrow" style="display: block; animation: bounce 2s infinite;">▼</span>
+            `;
+        }
+    }
+    const hamburger = document.getElementById('hamburgerMenu');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+    </script>
+    
+</body>
+</html>

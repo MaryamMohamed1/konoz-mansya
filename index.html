@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كنوز منسيه</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Cairo:wght@600;700&family=Open+Sans:wght@400;600&display=swap"rel="stylesheet">
+</head>
+<body>
+    <div class="page-transition-overlay" id="pageTransition"></div>
+    <section class="hero-section">
+        
+        <header class="navbar">
+            <div class="Logo-container">
+                <div class="Logo-text">
+                    <div class="ar">استكشف كنوز مصر المنسيه</div>
+                    <div class="en">Explore the forgotten treasures of Egypt</div>
+                </div>
+                <div class="Logo-icon">
+                    <img src="asset/eye of hours.png" alt="Eye of Hours logo">
+                </div>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="explore.html">Explore</a></li>
+                    <li><a href="support.html">Support</a></li>
+                    <li><a href="feedback.html">Feedback</a></li>
+                </ul>
+            </nav>
+            <div class="language-toggle">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                </svg>
+                AR | EN
+            </div>
+            <div class="hamburger" id="hamburgerMenu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </header>
+        <div class="hero-content">
+            <h1>DISCOVER <br> UNTOLD ANCIENT <br> WONDERS </h1>
+            <a href="explore.html"onclick="goToExplore(event)" class="cta-btn">
+            Explore Now <span></span>
+            </a>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
+            <p>Scroll to uncover</p>
+        </div>
+    </section>
+    <section class="home-features">
+        <div class="feature-container">
+
+            <div class="feature-card">
+                <img src="asset/Shali Fortress Siwa Egypt.png" alt="Hidden Eras" class="card-bg">
+                <div class="card-content">
+                    <h3 class="feature-title">Hidden Eras</h3>
+                    <p class="feature-desc">Discover layers of history untold in tourist guides, from Siwa's salt forts to Minya's catacombs.</p>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <img src="asset/Flashlight illuminating hieroglyphics on dark wall.png" alt="Interactive Experience" class="card-bg">
+                <div class="card-content">
+                    <h3 class="feature-title">Interactive Journey</h3>
+                    <p class="feature-desc">Not just a gallery, but an excavation. Use your flashlight to unearth ancient secrets in the dark.</p>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <img src="asset/Temple of Hibis Kharga Oasis Egypt .png" alt="Forgotten Provinces" class="card-bg">
+                <div class="card-content">
+                    <h3 class="feature-title">Forgotten Provinces</h3>
+                    <p class="feature-desc">Egypt is more than pyramids. Every stone in our marginalized provinces holds a legend waiting.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+    <footer class="main-footer">
+    <div class="footer-container">
+        
+        <div class="footer-column about">
+            <div class="footer-logo">
+                <img src="asset/eye of hours.png" alt="Logo">
+                <span>Hidden Treasures</span>
+            </div>
+            <p>Uncovering the untold stories of Egypt's forgotten heritage. Join our journey to rediscover history.</p>
+        </div>
+
+        <div class="footer-column links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="explore.html">Explore</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column contact">
+            <h3>Stay Connected</h3>
+            <div class="footer-socials">
+                <a href="#">FB</a>
+                <a href="#">IG</a>
+                <a href="#">TW</a>
+            </div>
+            <p>Contact: info@egyptreasures.com</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Hidden Treasures Project | Designed with Passion for Heritage</p>
+    </div>
+</footer>
+    <script>
+        function goToExplore(event) {
+            event.preventDefault(); 
+            const targetUrl = event.currentTarget.href;
+            const transitionOverlay = document.getElementById('pageTransition');
+            transitionOverlay.classList.add('active');
+            setTimeout(() => {
+                window.location.href = targetUrl;
+            }, 800);
+        }
+        const hamburger = document.getElementById('hamburgerMenu');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+    </script>
+    
+</body>
+</html>
